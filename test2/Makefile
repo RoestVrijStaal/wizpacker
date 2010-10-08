@@ -15,8 +15,11 @@ HOST_LIBS	=
 
 all:	target host sample1
 sample1:
-	dd if=/dev/urandom of=testfile.bin bs=1M count=4
-	./wizPacker.bin wizUnpackerSample1.bin testfile.bin
+	dd if=/dev/urandom of=testfile.bin bs=1M count=1
+	dd if=/dev/urandom of=testfile2.bin bs=1M count=1
+	dd if=/dev/urandom of=testfile3.bin bs=1M count=4
+
+	./wizPacker.bin wizUnpackerSample1.bin testfile2.bin testfile3.bin testfile.bin
 	./wizPacker.bin wizUnpackerSample1.gpe testfile.bin
 	md5sum testfile.bin
 	rm testfile.bin
