@@ -60,7 +60,7 @@ char * unpackFile(char * me, char * fileName)
 		currentOffset-=sizeof(length)+sizeof(offset);	 // substract table entry size
 		currentOffset = lseek(containerDesc, currentOffset , SEEK_SET);
 		#ifdef _DEBUG
-		printf("Current offset %x\n", currentOffset);
+		printf("Current offset 0x%x\n", currentOffset);
 		#endif 
 		read(containerDesc, &offset, sizeof(offset));
 		read(containerDesc, &length, sizeof(length));
@@ -72,7 +72,7 @@ char * unpackFile(char * me, char * fileName)
 		if ( offset >= containerFileSize )
 		{
 			#ifdef _DEBUG
-			printf("Current offset %x is out of container bounds ¿corrupted entry? aborting\n", currentOffset);
+			printf("Current offset 0x%x is out of container bounds, corrupted entry? aborting\n", currentOffset);
 			#endif 
 			free(containedFilename);
 			close(containerDesc);

@@ -50,7 +50,7 @@ int main(int argc, char * argv[])
 	for (filenumber = 2;filenumber < argc;filenumber++)
 	{
 		size_t fileSizeOut = lseek(descOut, 0x0, SEEK_END);
-		printf("Filenumber: %d '%s'\n", filenumber, argv[filenumber]);
+		printf("Filenumber: %d '%s'\n", filenumber-1, argv[filenumber]);
 		int descIn = open(argv[filenumber], O_RDONLY);
 		if ( -1 == descIn )
 		{
@@ -85,7 +85,7 @@ int main(int argc, char * argv[])
 		printf("Size: 0x%.4x\n", fileSizeIn);
 
 	}
-	write(descOut, fileTable, (argc-2) * (sizeof(unsigned long int)+ sizeof(unsigned long int)));
+	write(descOut, fileTable, (argc-1) * (sizeof(unsigned long int)+ sizeof(unsigned long int)));
 	write(descOut, &fileTableEntries, sizeof(fileTableEntries));
 	write(descOut, &version, sizeof(version));
 	write(descOut, &magic, strlen(magic)+1);
